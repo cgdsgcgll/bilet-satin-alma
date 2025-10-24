@@ -33,7 +33,7 @@ try {
         throw new Exception('Koltuk dolu');
     }
 
-    // 3) Fiyat (kuruş)
+    // 3) Fiyat 
     $price = (int) $trip['price'];
 
     // 4) Kupon kontrolü (firma uyumu + süre + toplam limit + kullanıcı tekrar kullanımı)
@@ -70,7 +70,7 @@ try {
     // 5) Bakiye kontrolü – yetersizse yönlendir
     if ((int) $me['balance'] < $price) {
         db()->rollBack();
-        $need = max(0, $price - (int) $me['balance']); // kuruş
+        $need = max(0, $price - (int) $me['balance']);
         $ret = 'trip.php?id=' . urlencode($tripId);
         header('Location: add_credit.php?amount=' . $need . '&return=' . $ret);
         exit;

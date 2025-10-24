@@ -102,7 +102,7 @@ $busy = array_map(fn($r) => (int) $r['seat_number'], $bs->fetchAll());
                 </div>
 
                 <div class="grid" style="grid-template-columns:1fr auto;gap:8px;margin-top:12px">
-                    <input class="input" id="coupon" name="coupon_code" placeholder="Kupon kodu (opsiyonel)">
+                    <input class="input" id="coupon" name="coupon_code" placeholder="Kupon kodu ">
                 </div>
 
                 <div id="buy-section" class="float-bar" style="display:none;margin-top:16px">
@@ -137,7 +137,7 @@ $busy = array_map(fn($r) => (int) $r['seat_number'], $bs->fetchAll());
             });
         });
 
-        const basePrice = <?= (int) $trip['price'] ?>; // kuruş
+        const basePrice = <?= (int) $trip['price'] ?>;
         const priceText = document.getElementById('priceText');
         const discNote = document.getElementById('discNote');
         const couponInp = document.getElementById('coupon');

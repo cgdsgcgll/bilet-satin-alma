@@ -40,7 +40,7 @@ $me = current_user();
             <form method="post" class="grid" style="grid-template-columns:1fr;gap:12px">
                 <input type="hidden" name="return" value="<?= htmlspecialchars($return) ?>">
                 <div>
-                    <label class="helper">Tutar (kuruş)</label>
+                    <label class="helper">Tutar </label>
                     <input class="input" name="amount" type="number" min="1000" step="500" value="<?= $prefill ?>">
                 </div>
                 <input class="input" value="5555 4444 3333 2222" readonly>

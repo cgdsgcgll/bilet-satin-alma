@@ -71,7 +71,7 @@ $me = current_user();
                 <input type="hidden" name="return" value="<?= htmlspecialchars($return) ?>">
 
                 <div class="form-row" style="margin-bottom:8px">
-                    <label for="amount">Tutar (kuruş)</label>
+                    <label for="amount">Tutar </label>
                     <input class="input" id="amount" name="amount" type="number" min="1000" step="500"
                         value="<?= $prefill ?: 10000 ?>">
                 </div>

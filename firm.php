@@ -88,7 +88,7 @@ $coupons = $cp->fetchAll();
                 <input class="input" name="destination_city" placeholder="Varış">
                 <input class="input" type="datetime-local" name="departure_time">
                 <input class="input" type="datetime-local" name="arrival_time">
-                <input class="input" type="number" name="price" placeholder="Fiyat (kuruş)">
+                <input class="input" type="number" name="price" placeholder="Fiyat ">
                 <input class="input" type="number" name="capacity" placeholder="Koltuk">
                 <div style="grid-column:1/-1;text-align:right"><button class="btn primary" name="add_trip"
                         value="1">Ekle</button></div>
