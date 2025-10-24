@@ -9,7 +9,7 @@ $return = $_GET['return'] ?? 'add_credit.php';
 $err = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $amount = (int) ($_POST['amount'] ?? 0);   // kuruş
+    $amount = (int) ($_POST['amount'] ?? 0);
     $return = $_POST['return'] ?? 'add_credit.php';
 
     if ($amount < 1000) {
@@ -96,7 +96,7 @@ $me = current_user();
                 </div>
             </form>
             <form method="post" action="">
-                <!-- ... mevcut form alanların ... -->
+
                 <input type="hidden" name="csrf" value="<?= e($_SESSION['csrf']) ?>">
                 <button type="submit">Gönder</button>
             </form>
