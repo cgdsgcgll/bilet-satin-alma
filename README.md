@@ -27,8 +27,20 @@ Amaç, **basit bir ulaşım sistemi** mantığını, modern container teknolojis
 
 ## 🐳 Docker Ortamında Çalıştırma
 
-1. **Projeyi klonlayın:**
-   ```bash
-   git clone https://github.com/cgdsgcgll/bilet-satin-alma.git
-   cd bilet-satin-alma
-   ```
+1️⃣ Depoyu klonla
+git clone https://github.com/cgdsgcgll/bilet-satin-alma.git
+
+2️⃣ Klasöre gir
+cd bilet-satin-alma
+
+3️⃣ Docker imajını oluştur
+docker compose build --no-cache
+
+4️⃣ Container’ı başlat
+docker compose up -d
+
+🌐 Uygulamaya Erişim
+
+Container başarıyla başladıktan sonra, tarayıcıdan şu adrese gidin:
+
+http://localhost:8080
