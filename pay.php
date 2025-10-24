@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/init.php'; ?>
 <?php
 require_once __DIR__ . '/auth.php';
 require_login();
@@ -14,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($amount < 1000) {
         $err = "Minimum 10,00 ₺ yüklenebilir.";
     } else {
-        // Kart doğrulama simülasyonu (sadece basit kontroller)
+
         $card = $_POST['card'] ?? '';
         $exp = $_POST['exp'] ?? '';
         $cvc = $_POST['cvc'] ?? '';
@@ -22,18 +23,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (strlen(preg_replace('/\D/', '', $card)) < 12 || strlen(trim($cvc)) < 3) {
             $err = "Kart bilgileri hatalı.";
         } else {
-            // Doğru tablo ve kolon isimleri
+
             db()->prepare("UPDATE user SET balance = balance + ? WHERE id = ?")
                 ->execute([$amount, $me['id']]);
 
-            // Başarılıysa hedef sayfaya dön
+
             header('Location: ' . $return . '?ok=1');
             exit;
         }
     }
 }
 
-// Güncel bakiyeyi tekrar çek (ekranda doğru görünsün)
+// Ekranda doğru görünmesi için güncel bakiyenin çekimi
 $me = current_user();
 ?>
 <!doctype html>
@@ -94,6 +95,12 @@ $me = current_user();
                     <button class="btn primary">Öde ve Yükle</button>
                 </div>
             </form>
+            <form method="post" action="">
+                <!-- ... mevcut form alanların ... -->
+                <input type="hidden" name="csrf" value="<?= e($_SESSION['csrf']) ?>">
+                <button type="submit">Gönder</button>
+            </form>
+
         </div>
     </main>
 </body>

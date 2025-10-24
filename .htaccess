@@ -1,0 +1,20 @@
+# Dizin listelemeyi kapat
+Options -Indexes
+
+# Veritabanı ve SQL dosyalarını engelle
+RedirectMatch 403 ^/database/
+<FilesMatch "\.(sqlite|sql)$">
+  Require all denied
+</FilesMatch>
+
+# Tohumlama / reset scriptlerini erişime kapat
+<FilesMatch "^(seed|seed_more_trips|reset_db)\.php$">
+  Require all denied
+</FilesMatch>
+
+# Konfigürasyon, log ve yedek dosyalarını engelle
+<FilesMatch "\.(ini|env|log|bak|sh)$">
+  Require all denied
+</FilesMatch>
+
+# (Rewrite modülü gerekiyorsa burada kurallarını kullanabilirsin)

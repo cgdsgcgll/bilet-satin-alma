@@ -1,31 +1,36 @@
 <?php
+// Yalnızca komut satırından (CLI) çalışsın; web'den 403
+if (php_sapi_name() !== 'cli') {
+    http_response_code(403);
+    exit('CLI only');
+}
 require_once __DIR__ . '/db.php';
 
 $pdo = db();
 
 echo "<pre>Seed işlemi başladı...\n";
 
-// 1️⃣  Örnek otobüs firması
+// Örnek otobüs firması
 $companyId = '1';
 $pdo->prepare("INSERT OR IGNORE INTO bus_company (id, name, logo_path)
                VALUES (?, ?, ?)")
     ->execute([$companyId, 'Respect Turizm', 'assets/respect_logo.png']);
 
-// 2️⃣  Admin kullanıcı
+// Admin kullanıcı
 $adminId = '1';
 $adminPass = password_hash('admin123', PASSWORD_BCRYPT);
 $pdo->prepare("INSERT OR IGNORE INTO user (id, full_name, email, password, role, balance)
                VALUES (?, ?, ?, ?, ?, 0)")
     ->execute([$adminId, 'Sistem Yöneticisi', 'admin@respect.com', $adminPass, 'admin']);
 
-// 3️⃣  Firma Admin (Respect Turizm firması için)
+// Firma Admin (Respect Turizm firması için)
 $firmaId = '2';
 $firmaPass = password_hash('firma123', PASSWORD_BCRYPT);
 $pdo->prepare("INSERT OR IGNORE INTO user (id, full_name, email, password, role, company_id, balance)
                VALUES (?, ?, ?, ?, ?, ?, 0)")
     ->execute([$firmaId, 'Respect Turizm Yetkilisi', 'firma@respect.com', $firmaPass, 'company', $companyId]);
 
-// 4️⃣  Örnek sefer
+// Örnek sefer
 $tripId = '1001';
 $pdo->prepare("INSERT OR IGNORE INTO trips (id, company_id, departure_city, destination_city, departure_time, price, capacity)
                VALUES (?, ?, ?, ?, ?, ?, ?)")

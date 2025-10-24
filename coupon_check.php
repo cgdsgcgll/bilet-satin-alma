@@ -1,8 +1,9 @@
+<?php require_once __DIR__ . '/init.php'; ?>
 <?php
 require_once __DIR__ . '/db.php';
 header('Content-Type: application/json; charset=utf-8');
 
-$code = strtoupper(trim($_GET['code'] ?? ''));   // normalize
+$code = strtoupper(trim($_GET['code'] ?? ''));
 $tripId = $_GET['trip_id'] ?? '';
 
 if ($code === '' || $tripId === '') {

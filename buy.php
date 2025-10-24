@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/init.php'; ?>
 <?php
 // buy.php – Koltuk satın alma + kupon uygulama + bakiye kontrolü
 require_once __DIR__ . '/auth.php';
@@ -19,7 +20,7 @@ try {
         throw new Exception('Sefer yok');
     }
 
-    // 2) Koltuk uygun mu?
+    // 2) Koltuk uygun mu
     $c = db()->prepare("
         SELECT 1
         FROM booked_seats bs
@@ -50,7 +51,7 @@ try {
             $usedG->execute([$cp['id']]);
             $globalOk = ((int) $usedG->fetchColumn() < (int) $cp['usage_limit']);
 
-            // aynı kullanıcı tekrar kullanamasın (istersen kaldırılabilir)
+            // aynı kullanıcı tekrar kullanamasın 
             $usedU = db()->prepare("SELECT COUNT(*) FROM user_coupons WHERE coupon_id=? AND user_id=?");
             $usedU->execute([$cp['id'], $me['id']]);
             $userOk = ((int) $usedU->fetchColumn() === 0);

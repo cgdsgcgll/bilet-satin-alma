@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/init.php'; ?>
 <?php
 require_once __DIR__ . '/auth.php';
 $err = '';
@@ -36,6 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button class="btn primary">Kayıt Ol</button>
                 <div class="helper">Zaten üye misin? <a href="login.php">Giriş yap</a></div>
             </form>
+            <form method="post" action="">
+                <!-- ... mevcut form alanların ... -->
+                <input type="hidden" name="csrf" value="<?= e($_SESSION['csrf']) ?>">
+                <button type="submit">Gönder</button>
+            </form>
+
         </div>
     </main>
 </body>
